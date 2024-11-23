@@ -1,0 +1,97 @@
+<section class="sectionserviceRow">
+    <!-- Fixed Icon Section (4 columns) -->
+    <div class="fixedIcons">
+        <a href="https://www.facebook.com/profile.php?id=61565411637604&mibextid=ZbWKwL" target="_blank"
+           class="facebookicon"><i class="fab fa-facebook"> </i></a>
+        <a href="https://www.instagram.com/codes.bunny?igsh=MjU2aXl1eWRwa2Q2" target="_blank" class="instaicon"><i
+                class="fab fa-instagram"> </i></a>
+    </div>
+
+    <!-- Scrolling Content Section (8 columns) -->
+    <div class="scrollingContent">
+        <div class="serviceRow">
+            <div class="serviceItem"><span class="star">⭐</span> hello 1</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 2</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 3</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 4</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 5</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 6</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 7</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 8</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 9</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 10</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 11</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 12</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 13</div>
+            <div class="serviceItem"><span class="star">⭐</span> hello 14</div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<!-- First Navbar (Logo, Search, Icons) -->
+<header class="main-header ">
+    <nav class="main-menu clearfix">
+        <div class="container">
+            <div class="main-menu-wrapper clearfix">
+                <div class="main-menu-wrapper-inner clearfix">
+                    <div class="main-menu-wrapper__left clearfix">
+                        <div class="main-menu-wrapper__logo">
+                            <a href="index.html"><img src="{{asset('front/images/applelogo.png')}}" width="100" alt=""></a>
+                        </div>
+                        <div class="main-menu-wrapper__main-menu">
+                            <button class="btn sbtn d-lg-none" style="margin-right: 20px;" type="button"
+                                    onclick="toggleSearch()">
+                                <i class="bi bi-search" style="color: aliceblue;"> </i>
+                            </button>
+                            <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                            <ul class="main-menu__list">
+                                <li class="dropdown">
+                                    <a href="product.html">Shop</a>
+                                    <ul>
+                                        <li class="nav-item"><a class="nav-link" href="product.html">ipad</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="product.html">Smartwatches</a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Mobiles</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="product.html">MackBook</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="aboutus.html">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="main-menu-wrapper__right">
+                        <div class="main-menu-wrapper__search-box-cart-box">
+                            <button class="btn" style="margin-right: 20px;" type="button" onclick="toggleSearch()">
+                                <i class="bi bi-search" style="color: aliceblue;"> </i>
+                            </button>
+
+                            <div class="flags d-flex align-items-center">
+                                <img src="{{assert('front/images/UAEflag.png')}}" alt="UAE Flag" width="30" height="20"
+                                     class="me-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
+                                     style="margin-right: 20px;" alt="Pakistan Flag" width="30" height="20">
+                            </div>
+                            <a href="registration.html" class="main-menu-wrapper__cart "><i
+                                    class="fa-regular fa-user fa-sm" style="color: #fcfcfc;"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="searcher">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search">
+                        <button class="search-button">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+</header>
