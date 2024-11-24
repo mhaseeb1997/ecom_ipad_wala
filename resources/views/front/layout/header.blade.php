@@ -39,7 +39,7 @@
                 <div class="main-menu-wrapper-inner clearfix">
                     <div class="main-menu-wrapper__left clearfix">
                         <div class="main-menu-wrapper__logo">
-                            <a href="index.html"><img src="{{asset('front/images/applelogo.png')}}" width="100" alt=""></a>
+                            <a href="/"><img src="{{asset('front/images/applelogo.png')}}" width="100" alt=""></a>
                         </div>
                         <div class="main-menu-wrapper__main-menu">
                             <button class="btn sbtn d-lg-none" style="margin-right: 20px;" type="button"
@@ -49,16 +49,16 @@
                             <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                             <ul class="main-menu__list">
                                 <li class="dropdown">
-                                    <a href="product.html">Shop</a>
+                                    <a href="{{route('front-product')}}">Shop</a>
                                     <ul>
-                                        <li class="nav-item"><a class="nav-link" href="product.html">ipad</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="product.html">Smartwatches</a>
+                                        <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">ipad</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">Smartwatches</a>
                                         </li>
                                         <li class="nav-item"><a class="nav-link" href="#">Mobiles</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="product.html">MackBook</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">MackBook</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="aboutus.html">About</a></li>
+                                <li><a href="{{route('front-about-us')}}">About</a></li>
                             </ul>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             </button>
 
                             <div class="flags d-flex align-items-center">
-                                <img src="{{assert('front/images/UAEflag.png')}}" alt="UAE Flag" width="30" height="20"
+                                <img src="{{asset('front/images/UAEflag.png')}}" alt="UAE Flag" width="30" height="20"
                                      class="me-2">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
                                      style="margin-right: 20px;" alt="Pakistan Flag" width="30" height="20">
@@ -93,5 +93,4 @@
 
         </div>
     </nav>
-
 </header>

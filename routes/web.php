@@ -5,10 +5,6 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('front.index');
-});
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -18,11 +14,26 @@ Route::middleware('auth')->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::resource('product-category', ProductCategoryController::class);
-
-
-    Route::resource('product', ProductController::class);
+    Route::group(['prefix' => 'admin'], function () {
+        Route::resource('product-category', ProductCategoryController::class);
+        Route::resource('product', ProductController::class);
+    });
 });
-
 require __DIR__ . '/auth.php';
 
+
+Route::get('/', function () {
+    return view('front.index');
+});
+
+Route::get('about-us', function () {
+    return view('front.about-us');
+})->name('front-about-us');
+
+Route::get('product', function () {
+    return view('front.product');
+})->name('front-product');
+
+Route::get('product-detail', function () {
+    return view('front.product-detail');
+})->name('front-product-detail');
