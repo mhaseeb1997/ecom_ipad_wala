@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Tests\Integration\Database\EloquentHasManyThroughTest\Category;
 
 class Products extends Model
 {
@@ -13,7 +14,12 @@ class Products extends Model
         'cate_id',
         'name',
         'slug',
-        'images',
+        'thumbnail',
+        'gallery',
         'description',
     ];
+
+    public function product_variants(){
+        return $this->hasMany(ProductVariants::class , 'pro_id');
+    }
 }

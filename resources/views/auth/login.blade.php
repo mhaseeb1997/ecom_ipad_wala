@@ -78,6 +78,7 @@
 </head>
 <body>
 <form method="POST" action="/login">
+    @csrf
     <!-- Session Status -->
     <div class="form-group">
         <!-- Dynamic session status message can go here -->

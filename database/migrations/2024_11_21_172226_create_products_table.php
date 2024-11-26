@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cate_id')->nullable();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('images')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->longText('gallery')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
         });

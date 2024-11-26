@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Front\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +31,14 @@ Route::get('about-us', function () {
     return view('front.about-us');
 })->name('front-about-us');
 
-Route::get('product', function () {
-    return view('front.product');
-})->name('front-product');
+Route::get('product', [FrontendController::class, 'product'])->name('front-product');
+Route::get('product/detail/{slug}', [FrontendController::class, 'product_detail'])->name('front-product-detail');
 
-Route::get('product-detail', function () {
-    return view('front.product-detail');
-})->name('front-product-detail');
+
+//Route::get('product', function () {
+//    return view('front.product');
+//})->name('front-product');
+
+//Route::get('product-detail', function () {
+//    return view('front.product-detail');
+//})->name('front-product-detail');

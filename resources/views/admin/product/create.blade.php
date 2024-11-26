@@ -35,6 +35,7 @@
                 <div class="col-12 mb-3">
                     <div class="row clone-section">
                         <div class="col-3 mb-2">
+                            <label for="name">Color</label>
                             <select name="variant[color][]" class="form-control form-select">
                                 <option value="red">Red</option>
                                 <option value="green">Green</option>
@@ -42,27 +43,36 @@
                             </select>
                         </div>
                         <div class="col-3 mb-2">
+                            <label for="name">Storage</label>
                             <select name="variant[storage][]" class="form-control form-select">
                                 <option value="512">512</option>
                                 <option value="64">64</option>
                                 <option value="32">32</option>
                             </select>
                         </div>
-                        <div class="col-3 mb-2 d-flex align-items-center">
+                        <div class="col-3 mb-2 align-items-center">
+                            <label for="name">Price</label>
                             <input type="text" name="variant[price][]" class="form-control">
                         </div>
-                        <div class="col-3 mb-2 d-flex align-items-center">
+                        <div class="col-3 mb-2 align-items-center">
+                            <label for="name">Count</label>
+                            <div class="d-flex">
                             <input type="text" name="variant[stock_count][]" class="form-control">
                             <button class="btn btn-danger btn-sm ms-2 remove-row" style="display: none;">Remove</button>
-
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 text-end mt-2">
                         <button type="button" class="btn btn-primary btn-sm add-more">Add More</button>
                     </div>
                 </div>
-                <div class="col-12 mb-3">
-                    <input type="file" class="form-control" multiple>
+                <div class="col-6 mb-3">
+                    <label for="name">Thumbnail</label>
+                    <input type="file" class="form-control" name="thumbnail">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name">Gallery</label>
+                    <input type="file" class="form-control" name="gallery[]" multiple>
                 </div>
                 <div class="col-12">
                     <textarea rows="5" class="form-control" name="description"></textarea>

@@ -31,8 +31,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $variants = [];
-
-        // Combine rows of variant data
         foreach ($request->variant['color'] as $index => $color) {
             $variants[] = [
                 'color' => $color,
@@ -42,15 +40,32 @@ class ProductController extends Controller
             ];
         }
 
+        if ($request->hasFile('thumbnail')) {
+            $image = $request->file('thumbnail');
+            $thumbnail = time() . '_' . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('front/product');
+            $image->move($destinationPath, $thumbnail);
+        }
+
+        $gallery = [];
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $image) {
+                $uniqueName = time() . '_' . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('front/product/gallery');
+                $image->move($destinationPath, $uniqueName);
+                $gallery[] = $uniqueName;
+            }
+            $save_gallery = implode(',', $gallery);
+        }
 
         $category = Products::create([
             'name' => $request->name,
             'slug' => $request->slug,
+            'thumbnail' => $thumbnail,
+            'gallery' => $save_gallery,
             'description' => $request->description,
         ]);
-
         foreach ($variants as $variant) {
-            // Replace with your model and fields
             ProductVariants::create([
                 'pro_id' => $category->id,
                 'color' => $variant['color'],

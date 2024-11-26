@@ -82,6 +82,7 @@
 </head>
 <body>
 <form method="POST" action="/register">
+    @csrf
     <!-- Name -->
     <div class="form-group">
         <label for="name">Name</label>
