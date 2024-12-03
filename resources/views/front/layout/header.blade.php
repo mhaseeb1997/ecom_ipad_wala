@@ -51,11 +51,13 @@
                                 <li class="dropdown">
                                     <a href="{{route('front-product')}}">Shop</a>
                                     <ul>
-                                        <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">ipad</a></li>
+                                        <li class="nav-item"><a class="nav-link"
+                                                                href="{{route('front-product')}}">ipad</a></li>
                                         <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">Smartwatches</a>
                                         </li>
                                         <li class="nav-item"><a class="nav-link" href="#">Mobiles</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">MackBook</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{route('front-product')}}">MackBook</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="{{route('front-about-us')}}">About</a></li>
@@ -74,8 +76,15 @@
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
                                      style="margin-right: 20px;" alt="Pakistan Flag" width="30" height="20">
                             </div>
-                            <a href="registration.html" class="main-menu-wrapper__cart "><i
-                                    class="fa-regular fa-user fa-sm" style="color: #fcfcfc;"></i></a>
+                            @if (Auth::check())
+                                <a href="/" class="main-menu-wrapper__cart" style="color: #fff; text-decoration: none">
+                                    {{ Auth::user()->name }}
+                                </a>
+                            @else
+                                <a href="{{route('front-auth')}}" class="main-menu-wrapper__cart ">
+                                    <i class="fa-regular fa-user fa-sm" style="color: #fcfcfc;"></i>
+                                </a>
+                            @endif
                         </div>
                     </div>
 

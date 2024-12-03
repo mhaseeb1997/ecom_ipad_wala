@@ -82,30 +82,28 @@
                 </div>
             </div>
 
+
             <!-- Product Details -->
             <div class="col-md-6 product-detail-details">
                 <h1 class="product-detail-title">Apple iPhone 14 Pro Max 512GB - Deep Purple</h1>
-                <p class="product-detail-price text-success">AED 3,289.00</p>
-                <p class="product-detail-retail-price">
-                    <del>AED 5,900.00</del>
-                    <span class="product-detail-discount text-danger">44% less vs. new</span>
-                </p>
+                <p class="product-detail-price text-success js-product-price">AED 3,289.00</p>
                 <p class="product-detail-stock-info text-danger">Limited stock: only 1 left - order now.</p>
 
                 <!-- Condition Buttons -->
                 <div class="btn-group d-flex product-detail-condition mb-3" role="group">
-                    <button type="button" class="btn btn-outline-secondary active">Pre-Loved | Top</button>
-                    <button type="button" class="btn btn-outline-secondary">Pre-Loved | Good</button>
+                    <button type="button" class="btn btn-outline-secondary active js-pre-loved-top">Pre-Loved | Top
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary js-pre-loved-good">Pre-Loved | Good</button>
                 </div>
 
                 <!-- Color Options -->
                 <div class="mb-3 product-detail-color-options">
                     <span>Color: </span>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-primary active">Deep Purple</button>
-                        <button type="button" class="btn btn-outline-primary">Gold</button>
-                        <button type="button" class="btn btn-outline-primary">Silver</button>
-                        <button type="button" class="btn btn-outline-primary">Space Black</button>
+                        <button type="button" class="btn btn-outline-primary js-purple">Deep Purple</button>
+                        <button type="button" class="btn btn-outline-primary js-gold">Gold</button>
+                        <button type="button" class="btn btn-outline-primary js-silver">Silver</button>
+                        <button type="button" class="btn btn-outline-primary js-black">Space Black</button>
                     </div>
                 </div>
 
@@ -113,9 +111,9 @@
                 <div class="mb-3 product-detail-storage-options">
                     <span>Size: </span>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-primary">128 GB</button>
-                        <button type="button" class="btn btn-outline-primary">256 GB</button>
-                        <button type="button" class="btn btn-outline-primary active">512 GB</button>
+                        <button type="button" class="btn btn-outline-primary js-storage-128">128 GB</button>
+                        <button type="button" class="btn btn-outline-primary js-storage-256">256 GB</button>
+                        <button type="button" class="btn btn-outline-primary active js-storage-512">512 GB</button>
                     </div>
                 </div>
 
@@ -136,8 +134,9 @@
                 <a href="checkout.html">
                     <button class="btn btn-primary btn-block product-detail-add-to-cart">Buy Now</button>
                 </a>
-
             </div>
+
+
         </div>
     </div>
 
@@ -353,8 +352,6 @@
 @endsection
 @push('front-js')
     <script>
-
-
         function toggleSearch() {
             const searchContainer = document.getElementById("searcher");
             if (searchContainer.style.display === "none" || searchContainer.style.display === "") {
@@ -362,87 +359,6 @@
             } else {
                 searchContainer.style.display = "none";
             }
-        }
-
-        // Get modal for shiping
-        var modal = document.getElementById("popupshiping");
-        var btn = document.getElementById("openshiping");
-        var closeBtn = document.getElementsByClassName("closeshiping")[0];
-
-        // Open modal on button click
-        btn.onclick = function () {
-            modal.style.display = "flex";
-        }
-
-        // Close modal when the 'x' is clicked
-        closeBtn.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-
-        // Get modal for return
-        var modalret = document.getElementById("popupreturn");
-        var btnret = document.getElementById("openreturn");
-        var closeBtnret = document.getElementsByClassName("closereturn")[0];
-
-        // Open modal on button click
-        btnret.onclick = function () {
-            modalret.style.display = "flex";
-        }
-
-        // Close modal when the 'x' is clicked
-        closeBtnret.onclick = function () {
-            modalret.style.display = "none";
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function (event) {
-            if (event.target == modalret) {
-                modalret.style.display = "none";
-            }
-        }
-
-
-        // Get modal for return <!-- Warranty Modal -->
-        var modalwarr = document.getElementById("popupWarranty");
-        var btnwarr = document.getElementById("openwarranty");
-        var closeBtnwarr = document.getElementsByClassName("closeWarranty")[0];
-
-        // Open modal on button click
-        btnwarr.onclick = function () {
-            modalwarr.style.display = "flex";
-        }
-
-        // Close modal when the 'x' is clicked
-        closeBtnwarr.onclick = function () {
-            modalwarr.style.display = "none";
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function (event) {
-            if (event.target == modalwarr) {
-                modalwarr.style.display = "none";
-            }
-        }
-
-
-        // Function to open the popup with fade-in effect
-        function openPopup() {
-            const popup = document.getElementById("whatsapp-popup");
-            popup.classList.add("show");
-        }
-
-        // Function to close the popup
-        function closePopup() {
-            const popup = document.getElementById("whatsapp-popup");
-            popup.classList.remove("show");
         }
 
         // Function to start chat (redirect to WhatsApp)
@@ -488,6 +404,103 @@
                 thumbnail.classList.toggle("selected-thumbnail", i === index);
             });
         }
+
+
+        $(document).ready(function () {
+            const productData = {
+                top: {
+                    colors: {
+                        silver: {name: "Silver", storage: {128: 2800, 256: 2900}},
+                        black: {name: "Space Black", storage: {512: 3150}},
+                    },
+                },
+                good: {
+                    colors: {
+                        purple: {name: "Deep Purple", storage: {512: 2700}},
+                        gold: {name: "Gold", storage: {128: 2400, 256: 2500}},
+                    },
+                },
+            };
+
+            let selectedCondition = "top"; // Default condition
+            let selectedColor = "purple"; // Default color
+            let selectedStorage = 512; // Default storage
+
+            function updateColors() {
+                const colors = productData[selectedCondition].colors;
+                $(".product-detail-color-options .btn").each(function () {
+                    const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
+                    const colorKey = colorClass.replace("js-", "");
+                    if (colors[colorKey]) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                if (!colors[selectedColor]) {
+                    selectedColor = Object.keys(colors)[0];
+                    $(".product-detail-color-options .btn").removeClass("active");
+                    $(`.product-detail-color-options .js-${selectedColor}`).addClass("active");
+                }
+            }
+
+            function updateStorage() {
+                const storageOptions = productData[selectedCondition].colors[selectedColor].storage;
+                $(".product-detail-storage-options .btn").each(function () {
+                    const storage = parseInt($(this).text().trim());
+                    if (storageOptions[storage] !== undefined) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                if (!storageOptions[selectedStorage]) {
+                    selectedStorage = Object.keys(storageOptions)[0];
+                    $(".product-detail-storage-options .btn").removeClass("active");
+                    $(`.product-detail-storage-options .btn:contains(${selectedStorage} GB)`).addClass("active");
+                }
+            }
+
+            function updatePrice() {
+                const price =
+                    productData[selectedCondition].colors[selectedColor].storage[selectedStorage];
+                $(".js-product-price").text(`AED ${price}`);
+            }
+
+            $(".product-detail-condition .btn").click(function () {
+                $(".product-detail-condition .btn").removeClass("active");
+                $(this).addClass("active");
+                selectedCondition = $(this).hasClass("js-pre-loved-top") ? "top" : "good";
+                selectedColor = "purple"; // Reset to default color
+                selectedStorage = 512; // Reset to default storage
+                updateColors();
+                updateStorage();
+                updatePrice();
+            });
+
+            $(".product-detail-color-options .btn").click(function () {
+                $(".product-detail-color-options .btn").removeClass("active");
+                $(this).addClass("active");
+                const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
+                selectedColor = colorClass.replace("js-", "");
+                selectedStorage = 512; // Reset to default storage
+                updateStorage();
+                updatePrice();
+            });
+
+            $(".product-detail-storage-options .btn").click(function () {
+                $(".product-detail-storage-options .btn").removeClass("active");
+                $(this).addClass("active");
+                selectedStorage = parseInt($(this).text().trim());
+                updatePrice();
+            });
+
+            updateColors();
+            updateStorage();
+            updatePrice();
+        });
 
     </script>
 @endpush

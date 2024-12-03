@@ -25,7 +25,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('front.index');
-});
+})->name('home');
 
 Route::get('about-us', function () {
     return view('front.about-us');
@@ -33,6 +33,9 @@ Route::get('about-us', function () {
 
 Route::get('product', [FrontendController::class, 'product'])->name('front-product');
 Route::get('product/detail/{slug}', [FrontendController::class, 'product_detail'])->name('front-product-detail');
+Route::get('login', [FrontendController::class, 'auth'])->name('front-auth');
+Route::post('user/register', [FrontendController::class, 'register'])->name('front-register');
+Route::post('user/login', [FrontendController::class, 'login'])->name('front-login');
 
 
 //Route::get('product', function () {
