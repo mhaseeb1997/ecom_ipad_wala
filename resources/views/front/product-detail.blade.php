@@ -61,17 +61,20 @@
             <div class="col-md-6 product-detail-image-gallery">
                 <div class="row">
                     <div class="col-md-2">
-                        <div class="  mt-3  product-detail-thumbnail-gallery">
 
-                            <img src="{{asset('front/images/smwatch.jpg')}}" alt="Thumbnail 1"
-                                 class="img-thumbnail mb-2 product-detail-thumbnail"
-                                 data-index="0" onclick="goToSlide(0)" onmouseover="previewSlide(0)"
-                                 onmouseout="resetSlide()">
+                        <div class="mt-3  product-detail-thumbnail-gallery">
+                            @foreach(explode(',',$product->gallery) as $key => $phone_gallery)
+                                <img src="{{asset('front/product/gallery/'.$phone_gallery)}}" alt="Thumbnail 1"
+                                     class="img-thumbnail mb-2 product-detail-thumbnail"
+                                     data-index="0" onclick="goToSlide({{$key}})" onmouseover="previewSlide({{$key}})"
+                                     onmouseout="resetSlide()">
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-md-10">
                         <div class="carousel">
-                            <img id="carouselImage" src="{{asset('front/images/smwatch.jpg')}}" alt="Carousel Image"
+                            <img id="carouselImage" src="{{asset('front/product/'.$product->thumbnail)}}"
+                                 alt="Carousel Image"
                                  class="active">
                             <div class="carousel-buttons">
                                 <button class="carousel-button" onclick="prevSlide()">&#10094;</button>
@@ -85,55 +88,64 @@
 
             <!-- Product Details -->
             <div class="col-md-6 product-detail-details">
-                <h1 class="product-detail-title">Apple iPhone 14 Pro Max 512GB - Deep Purple</h1>
-                <p class="product-detail-price text-success js-product-price">AED 3,289.00</p>
-                <p class="product-detail-stock-info text-danger">Limited stock: only 1 left - order now.</p>
+                <form id="product-detail-form" action="{{route('product_buy_now')}}" method="post">
+                    @csrf
+                    <input type="hidden" id="selected-condition" name="condition" value="">
+                    <input type="hidden" id="selected-color" name="color" value="">
+                    <input type="hidden" id="selected-storage" name="storage" value="">
+                    <input type="hidden" id="selected-price" name="price" value="">
+                    <h1 class="product-detail-title">{{$product->name}}</h1>
+                    <p class="product-detail-price text-success js-product-price">AED 3,289.00</p>
+                    {{--                <p class="product-detail-stock-info text-danger">Limited stock: only 1 left - order now.</p>--}}
 
-                <!-- Condition Buttons -->
-                <div class="btn-group d-flex product-detail-condition mb-3" role="group">
-                    <button type="button" class="btn btn-outline-secondary active js-pre-loved-top">Pre-Loved | Top
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary js-pre-loved-good">Pre-Loved | Good</button>
-                </div>
-
-                <!-- Color Options -->
-                <div class="mb-3 product-detail-color-options">
-                    <span>Color: </span>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-primary js-purple">Deep Purple</button>
-                        <button type="button" class="btn btn-outline-primary js-gold">Gold</button>
-                        <button type="button" class="btn btn-outline-primary js-silver">Silver</button>
-                        <button type="button" class="btn btn-outline-primary js-black">Space Black</button>
+                    <!-- Condition Buttons -->
+                    <div class="btn-group d-flex product-detail-condition mb-3" role="group">
+                        <button type="button" class="btn btn-outline-secondary active js-pre-loved-top">Pre-Loved | Top
+                        </button>
+                        {{--                    <button type="button" class="btn btn-outline-secondary js-pre-loved-good">Pre-Loved | Good</button>--}}
                     </div>
-                </div>
 
-                <!-- Storage Options -->
-                <div class="mb-3 product-detail-storage-options">
-                    <span>Size: </span>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-primary js-storage-128">128 GB</button>
-                        <button type="button" class="btn btn-outline-primary js-storage-256">256 GB</button>
-                        <button type="button" class="btn btn-outline-primary active js-storage-512">512 GB</button>
+                    <!-- Color Options -->
+                    <div class="mb-3 product-detail-color-options">
+                        <span>Color: </span>
+                        <div class="btn-group" role="group">
+                            {{--                        <button type="button" class="btn btn-outline-primary js-purple">Deep Purple</button>--}}
+                            {{--                        <button type="button" class="btn btn-outline-primary js-gold">Gold</button>--}}
+                            {{--                        <button type="button" class="btn btn-outline-primary js-silver">Silver</button>--}}
+                            {{--                        <button type="button" class="btn btn-outline-primary js-black">Space Black</button>--}}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Shipping & Warranty Info -->
-                <div class="mb-3 product-detail-shipping-info">
-                    <p><i class="bi bi-truck"></i> <a href="#" id="openshiping">Delivery in 3-5 business days</a></p>
-                    <p><i class="bi bi-arrow-counterclockwise"></i> <a href="#" id="openreturn">10 Days Return</a></p>
+                    <!-- Storage Options -->
+                    <div class="mb-3 product-detail-storage-options">
+                        <span>Size: </span>
+                        <div class="btn-group" role="group">
+                            {{--                        <button type="button" class="btn btn-outline-primary js-storage-128">128 GB</button>--}}
+                            {{--                        <button type="button" class="btn btn-outline-primary js-storage-256">256 GB</button>--}}
+                            {{--                        <button type="button" class="btn btn-outline-primary active js-storage-512">512 GB</button>--}}
+                        </div>
+                    </div>
 
-                </div>
+                    <!-- Shipping & Warranty Info -->
+                    <div class="mb-3 product-detail-shipping-info">
+                        <p><i class="bi bi-truck"></i> <a href="#" id="openshiping">Delivery in 3-5 business days</a>
+                        </p>
+                        <p><i class="bi bi-arrow-counterclockwise"></i> <a href="#" id="openreturn">10 Days Return</a>
+                        </p>
 
-                <div class="mb-3 product-detail-warranty-info">
-                    <p><i class="bi bi-shield-check"></i> <a href="#" id="openwarranty">12 Months Warranty</a></p>
-                    <!-- <p><i class="bi bi-check-circle"></i> <a href="#" id="openmobcheck"  data-bs-toggle="modal" data-bs-target="#mobocheckModal">MoboCheck Guarantee</a></p> -->
+                    </div>
 
-                </div>
+                    <div class="mb-3 product-detail-warranty-info">
+                        <p><i class="bi bi-shield-check"></i> <a href="#" id="openwarranty">12 Months Warranty</a></p>
+                        <!-- <p><i class="bi bi-check-circle"></i> <a href="#" id="openmobcheck"  data-bs-toggle="modal" data-bs-target="#mobocheckModal">MoboCheck Guarantee</a></p> -->
 
-                <!-- Add to Cart Button -->
-                <a href="checkout.html">
-                    <button class="btn btn-primary btn-block product-detail-add-to-cart">Buy Now</button>
-                </a>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+{{--                    <a href="">--}}
+                        <button class="btn btn-primary btn-block product-detail-add-to-cart">Buy Now</button>
+{{--                    </a>--}}
+                </form>
             </div>
 
 
@@ -407,100 +419,198 @@
 
 
         $(document).ready(function () {
-            const productData = {
-                top: {
-                    colors: {
-                        silver: {name: "Silver", storage: {128: 2800, 256: 2900}},
-                        black: {name: "Space Black", storage: {512: 3150}},
-                    },
-                },
-                good: {
-                    colors: {
-                        purple: {name: "Deep Purple", storage: {512: 2700}},
-                        gold: {name: "Gold", storage: {128: 2400, 256: 2500}},
-                    },
-                },
-            };
+            const productVariants = @json($product->product_variants);
 
-            let selectedCondition = "top"; // Default condition
-            let selectedColor = "purple"; // Default color
-            let selectedStorage = 512; // Default storage
+            function updateColors(condition = null) {
+                const colors = [...new Set(
+                    productVariants
+                        .filter(variant => !condition || variant.condition === condition)
+                        .map(variant => variant.color)
+                )];
 
-            function updateColors() {
-                const colors = productData[selectedCondition].colors;
-                $(".product-detail-color-options .btn").each(function () {
-                    const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
-                    const colorKey = colorClass.replace("js-", "");
-                    if (colors[colorKey]) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
+                const colorContainer = $('.product-detail-color-options .btn-group');
+                colorContainer.empty();
+
+                if (colors.length > 0) {
+                    colors.forEach(color => {
+                        colorContainer.append(
+                            `<button type="button" class="btn btn-outline-primary js-color" data-color="${color}">${color}</button>`
+                        );
+                    });
+
+                    // Automatically select the first color
+                    const defaultColor = $('.js-color').first();
+                    if (defaultColor.length) {
+                        defaultColor.addClass('active').trigger('click');
                     }
-                });
-
-                if (!colors[selectedColor]) {
-                    selectedColor = Object.keys(colors)[0];
-                    $(".product-detail-color-options .btn").removeClass("active");
-                    $(`.product-detail-color-options .js-${selectedColor}`).addClass("active");
+                } else {
+                    colorContainer.append('<p>No colors available</p>');
+                    $('.product-detail-storage-options .btn-group').empty().append('<p>No storage available</p>');
+                    $('.js-product-price').text('Price not available');
                 }
             }
 
-            function updateStorage() {
-                const storageOptions = productData[selectedCondition].colors[selectedColor].storage;
-                $(".product-detail-storage-options .btn").each(function () {
-                    const storage = parseInt($(this).text().trim());
-                    if (storageOptions[storage] !== undefined) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
+            function updateStorageAndPrice(color) {
+                const storages = productVariants.filter(variant => variant.color === color);
 
-                if (!storageOptions[selectedStorage]) {
-                    selectedStorage = Object.keys(storageOptions)[0];
-                    $(".product-detail-storage-options .btn").removeClass("active");
-                    $(`.product-detail-storage-options .btn:contains(${selectedStorage} GB)`).addClass("active");
+                const storageContainer = $('.product-detail-storage-options .btn-group');
+                storageContainer.empty();
+
+                if (storages.length > 0) {
+                    storages.forEach(storage => {
+                        storageContainer.append(
+                            `<button type="button" class="btn btn-outline-primary js-storage" data-price="${storage.price}" data-storage="${storage.storage}">${storage.storage} GB</button>`
+                        );
+                    });
+
+                    // Automatically select the first storage
+                    const defaultStorage = $('.js-storage').first();
+                    if (defaultStorage.length) {
+                        defaultStorage.addClass('active').trigger('click');
+                    }
+                } else {
+                    storageContainer.append('<p>No storage available</p>');
+                    $('.js-product-price').text('Price not available');
                 }
             }
 
-            function updatePrice() {
-                const price =
-                    productData[selectedCondition].colors[selectedColor].storage[selectedStorage];
-                $(".js-product-price").text(`AED ${price}`);
-            }
+            // Handle condition button clicks
+            $('.js-pre-loved-top, .js-pre-loved-good').on('click', function () {
+                const condition = $(this).hasClass('js-pre-loved-top') ? 'top' : 'good';
+                $('#selected-condition').val(condition); // Update hidden input for condition
 
-            $(".product-detail-condition .btn").click(function () {
-                $(".product-detail-condition .btn").removeClass("active");
-                $(this).addClass("active");
-                selectedCondition = $(this).hasClass("js-pre-loved-top") ? "top" : "good";
-                selectedColor = "purple"; // Reset to default color
-                selectedStorage = 512; // Reset to default storage
-                updateColors();
-                updateStorage();
-                updatePrice();
+                // Update colors and automatically trigger first color selection
+                updateColors(condition);
             });
 
-            $(".product-detail-color-options .btn").click(function () {
-                $(".product-detail-color-options .btn").removeClass("active");
-                $(this).addClass("active");
-                const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
-                selectedColor = colorClass.replace("js-", "");
-                selectedStorage = 512; // Reset to default storage
-                updateStorage();
-                updatePrice();
+            // Handle color selection
+            $(document).on('click', '.js-color', function () {
+                $('.js-color').removeClass('active');
+                $(this).addClass('active');
+
+                const color = $(this).data('color');
+                $('#selected-color').val(color); // Update hidden input for color
+                updateStorageAndPrice(color);
             });
 
-            $(".product-detail-storage-options .btn").click(function () {
-                $(".product-detail-storage-options .btn").removeClass("active");
-                $(this).addClass("active");
-                selectedStorage = parseInt($(this).text().trim());
-                updatePrice();
+            // Handle storage selection
+            $(document).on('click', '.js-storage', function () {
+                $('.js-storage').removeClass('active');
+                $(this).addClass('active');
+
+                const storage = $(this).data('storage');
+                const price = $(this).data('price');
+
+                $('#selected-storage').val(storage); // Update hidden input for storage
+                $('#selected-price').val(price); // Update hidden input for price
+                $('.js-product-price').text(`AED ${price}`);
             });
 
-            updateColors();
-            updateStorage();
-            updatePrice();
+            // Handle form submission
+            $('.product-detail-add-to-cart').on('click', function () {
+                $('#product-detail-form').submit(); // Submit the form
+            });
+
+            // Initialize with default values
+            updateColors(); // Load all colors
         });
+
+
+        // $(document).ready(function () {
+        //     const productData = {
+        //         top: {
+        //             colors: {
+        //                 silver: {name: "Silver", storage: {128: 2800, 256: 2900}},
+        //                 black: {name: "Space Black", storage: {512: 3150}},
+        //             },
+        //         },
+        //         good: {
+        //             colors: {
+        //                 purple: {name: "Deep Purple", storage: {512: 2700}},
+        //                 gold: {name: "Gold", storage: {128: 2400, 256: 2500}},
+        //             },
+        //         },
+        //     };
+        //
+        //     let selectedCondition = "top"; // Default condition
+        //     let selectedColor = "purple"; // Default color
+        //     let selectedStorage = 512; // Default storage
+        //
+        //     function updateColors() {
+        //         const colors = productData[selectedCondition].colors;
+        //         $(".product-detail-color-options .btn").each(function () {
+        //             const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
+        //             const colorKey = colorClass.replace("js-", "");
+        //             if (colors[colorKey]) {
+        //                 $(this).show();
+        //             } else {
+        //                 $(this).hide();
+        //             }
+        //         });
+        //
+        //         if (!colors[selectedColor]) {
+        //             selectedColor = Object.keys(colors)[0];
+        //             $(".product-detail-color-options .btn").removeClass("active");
+        //             $(`.product-detail-color-options .js-${selectedColor}`).addClass("active");
+        //         }
+        //     }
+        //
+        //     function updateStorage() {
+        //         const storageOptions = productData[selectedCondition].colors[selectedColor].storage;
+        //         $(".product-detail-storage-options .btn").each(function () {
+        //             const storage = parseInt($(this).text().trim());
+        //             if (storageOptions[storage] !== undefined) {
+        //                 $(this).show();
+        //             } else {
+        //                 $(this).hide();
+        //             }
+        //         });
+        //
+        //         if (!storageOptions[selectedStorage]) {
+        //             selectedStorage = Object.keys(storageOptions)[0];
+        //             $(".product-detail-storage-options .btn").removeClass("active");
+        //             $(`.product-detail-storage-options .btn:contains(${selectedStorage} GB)`).addClass("active");
+        //         }
+        //     }
+        //
+        //     function updatePrice() {
+        //         const price =
+        //             productData[selectedCondition].colors[selectedColor].storage[selectedStorage];
+        //         $(".js-product-price").text(`AED ${price}`);
+        //     }
+        //
+        //     $(".product-detail-condition .btn").click(function () {
+        //         $(".product-detail-condition .btn").removeClass("active");
+        //         $(this).addClass("active");
+        //         selectedCondition = $(this).hasClass("js-pre-loved-top") ? "top" : "good";
+        //         selectedColor = "purple"; // Reset to default color
+        //         selectedStorage = 512; // Reset to default storage
+        //         updateColors();
+        //         updateStorage();
+        //         updatePrice();
+        //     });
+        //
+        //     $(".product-detail-color-options .btn").click(function () {
+        //         $(".product-detail-color-options .btn").removeClass("active");
+        //         $(this).addClass("active");
+        //         const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
+        //         selectedColor = colorClass.replace("js-", "");
+        //         selectedStorage = 512; // Reset to default storage
+        //         updateStorage();
+        //         updatePrice();
+        //     });
+        //
+        //     $(".product-detail-storage-options .btn").click(function () {
+        //         $(".product-detail-storage-options .btn").removeClass("active");
+        //         $(this).addClass("active");
+        //         selectedStorage = parseInt($(this).text().trim());
+        //         updatePrice();
+        //     });
+        //
+        //     updateColors();
+        //     updateStorage();
+        //     updatePrice();
+        // });
 
     </script>
 @endpush

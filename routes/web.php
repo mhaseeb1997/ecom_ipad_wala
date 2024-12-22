@@ -33,15 +33,10 @@ Route::get('about-us', function () {
 
 Route::get('product', [FrontendController::class, 'product'])->name('front-product');
 Route::get('product/detail/{slug}', [FrontendController::class, 'product_detail'])->name('front-product-detail');
+Route::post('buy-now', [FrontendController::class, 'buy_now'])->name('product_buy_now');
 Route::get('login', [FrontendController::class, 'auth'])->name('front-auth');
 Route::post('user/register', [FrontendController::class, 'register'])->name('front-register');
 Route::post('user/login', [FrontendController::class, 'login'])->name('front-login');
 
 
-//Route::get('product', function () {
-//    return view('front.product');
-//})->name('front-product');
 
-//Route::get('product-detail', function () {
-//    return view('front.product-detail');
-//})->name('front-product-detail');

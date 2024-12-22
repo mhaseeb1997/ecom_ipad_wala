@@ -23,6 +23,11 @@ class FrontendController extends Controller
         return view('front.product-detail', compact('product'));
     }
 
+    public function buy_now(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function auth()
     {
         return view('front.auth');
