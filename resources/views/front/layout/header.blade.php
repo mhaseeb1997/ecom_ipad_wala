@@ -77,14 +77,8 @@
                                      style="margin-right: 20px;" alt="Pakistan Flag" width="30" height="20">
                             </div>
                             @if (Auth::check())
-                                <a href="/" class="main-menu-wrapper__cart" style="color: #fff; text-decoration: none">
+                                <a href="{{route('user_dashboard')}}" class="main-menu-wrapper__cart" style="color: #fff; text-decoration: none">
                                     {{ Auth::user()->name }}
-                                </a>
-                                <a href="#" class="nav-link" onclick="document.getElementById('logout-form').submit()">
-                                    <p>Logout</p>
-                                    <form action="<?php echo e(route('logout')); ?>" method="POST" id="logout-form">
-                                            <?php echo csrf_field(); ?>
-                                    </form>
                                 </a>
                             @else
                                 <a href="{{route('front-auth')}}" class="main-menu-wrapper__cart ">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderPlaced;
 use App\Models\Products;
 use App\Models\ProductVariants;
 use App\Models\User;
@@ -33,6 +34,42 @@ class FrontendController extends Controller
         $product = Products::where('id', $pro_id)->first();
         $product_variant = ProductVariants::where('pro_id', $pro_id)->where('color', $color)->where('storage', $storage)->where('price', $price)->first();
         return view('front.checkout', compact('product', 'product_variant'));
+    }
+
+    public function order_placed(Request $request)
+    {
+
+        $user_id = Auth::id();
+        $request->validate([
+            'bank_receipt' => 'required',
+            'pro_id' => 'required',
+            'pro_vid' => 'required',
+        ]);
+
+        if ($request->hasFile('bank_receipt')) {
+            $image = $request->file('bank_receipt');
+            $bank_receipt = time() . '_' . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('front/order/bank_receipt');
+            $image->move($destinationPath, $bank_receipt);
+        }
+
+        $category = OrderPlaced::create([
+            'bank_receipt' => $bank_receipt,
+            'user_id' => $user_id,
+            'pro_id' => $request->pro_id,
+            'pro_vid' => $request->pro_vid,
+            'status' => 0,
+        ]);
+
+        return redirect()->route('user_dashboard');
+
+    }
+
+    public function dashboard(Request $request)
+    {
+        $user_id = Auth::id();
+        $orders = OrderPlaced::with('product','product_variants')->where('user_id', $user_id)->get();
+        return view('front.dashboard', compact('orders'));
     }
 
     public function auth()

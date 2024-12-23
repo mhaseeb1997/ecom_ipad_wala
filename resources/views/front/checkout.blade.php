@@ -1,123 +1,135 @@
 @extends('front.layout.main')
 @section('front')
     <div class="container mt-4 product-detail-section">
-        <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-12">
-                @if (Auth::check())
-                    <div class="checkmaincontainerr">
-                        <div class="row">
-                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                <h2>Payment Method</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <p>Bank info</p>
-                            </div>
-                            <hr class="my-3" style="border: none; border-top: 1px solid #7a7a7a;">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <p style="margin-left: 20px;">
-                                            COD requires your phone number to be verified.
-                                        </p>
-                                    </div>
-                                    <div class="col-2">
-                                        <button
-                                            class="btn btn-outline-success btn-sm">Verify Now
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="checkmaincontainerr" style="margin:20px 0;">
-                            <h2>Shipping Information</h2>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li style="color: red">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                            <form method="post" action="{{route('front-register')}}">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" name="name"
-                                               placeholder="Full Name"
-                                               required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email"
-                                               placeholder="Email"
-                                               required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">Phone#</label>
-                                        <input type="text" class="form-control" name="mobile"
-                                               placeholder="Phone Number"
-                                               required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">password</label>
-                                        <input type="password" class="form-control" name="password"
-                                               placeholder="Password"
-                                               required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">City</label>
-                                        <input type="text" class="form-control" name="city"
-                                               placeholder="Enter your City"
-                                               required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">Address</label>
-                                        <input type="text" class="form-control" name="address"
-                                               placeholder="Enter Your Address"
-                                               required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <button type="submit" class="btn btn-outline-success saveinfo w-100"
-                                                style="margin-top: 42px;">
-                                            Save Information
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+        @if (Auth::check())
+            <form method="post" action="{{route('order_placed')}}" enctype="multipart/form-data">
+                @csrf
                 @endif
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card p-3 checkmaincontainerr">
-                        <h5 class="mb-3"><strong>Order Summary</strong></h5>
-                        <!-- Item 1 -->
-                        <div class="mb-1">
-                            <p class="mb-1"><strong>{{$product->name}}</strong></p>
-                            <p style="font-size: 0.9em; color: gray;">Never Used | Like New</p>
-                            <p><strong>PKR {{$product_variant->price}}</strong></p>
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-12">
+                        @if (Auth::check())
+                            <div class="checkmaincontainerr">
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9 col-sm-9">
+                                        <h2>Payment Method</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <p>Bank info</p>
+                                    </div>
+                                    <hr class="my-3" style="border: none; border-top: 1px solid #7a7a7a;">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>
+                                                    COD requires your phone number to be verified.
+                                                </p>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="file" name="bank_receipt">
+                                                <input type="hidden" name="pro_id" value="{{$product->id}}">
+                                                <input type="hidden" name="pro_vid" value="{{$product_variant->id}}">
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li style="color: red">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="checkmaincontainerr" style="margin:20px 0;">
+                                    <h2>Shipping Information</h2>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color: red">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <form method="post" action="{{route('front-register')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" name="name"
+                                                       placeholder="Full Name"
+                                                       required>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" name="email"
+                                                       placeholder="Email"
+                                                       required>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <label class="form-label">Phone#</label>
+                                                <input type="text" class="form-control" name="mobile"
+                                                       placeholder="Phone Number"
+                                                       required>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <label class="form-label">password</label>
+                                                <input type="password" class="form-control" name="password"
+                                                       placeholder="Password"
+                                                       required>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <label class="form-label">City</label>
+                                                <input type="text" class="form-control" name="city"
+                                                       placeholder="Enter your City"
+                                                       required>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="address"
+                                                       placeholder="Enter Your Address"
+                                                       required>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <button type="submit" class="btn btn-outline-success saveinfo w-100"
+                                                        style="margin-top: 42px;">
+                                                    Save Information
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card p-3 checkmaincontainerr">
+                                <h5 class="mb-3"><strong>Order Summary</strong></h5>
+                                <!-- Item 1 -->
+                                <div class="mb-1">
+                                    <p class="mb-1"><strong>{{$product->name}}</strong></p>
+                                    <p style="font-size: 0.9em; color: gray;">Never Used | Like New</p>
+                                    <p><strong>PKR {{$product_variant->price}}</strong></p>
+                                </div>
+                                <hr>
+                                <!-- Item 3 -->
+                                <div>
+                                    <p class="mb-1"><strong>Gift Wrap</strong></p>
+                                    <p><strong>PKR 29.40</strong></p>
+                                </div>
+                            </div>
                         </div>
-                        <hr>
-                        <!-- Item 3 -->
-                        <div>
-                            <p class="mb-1"><strong>Gift Wrap</strong></p>
-                            <p><strong>PKR 29.40</strong></p>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card p-3"
+                                 style="max-width: 100%; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <p><strong>Total</strong> <span style="float: right;">PKR 759.25</span></p>
+                                <button type="submit" class="btn btn-success w-100" >Place Order</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card p-3"
-                         style="max-width: 100%; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <p><strong>Total</strong> <span style="float: right;">PKR 759.25</span></p>
-                        <button class="btn btn-secondary w-100" disabled>Place Order</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                @if (Auth::check())
+            </form>
+        @endif
     </div>
 
 
