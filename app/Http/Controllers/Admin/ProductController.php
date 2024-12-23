@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderPlaced;
+use App\Models\ProductCategory;
 use App\Models\Products;
 use App\Models\ProductVariants;
 use Illuminate\Http\Request;
@@ -14,6 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         return view('admin.product.index');
     }
 
@@ -22,7 +25,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $category = ProductCategory::get();
+        return view('admin.product.create' ,compact('category'));
     }
 
     /**
@@ -59,6 +63,7 @@ class ProductController extends Controller
         }
 
         $category = Products::create([
+            'cate_id' => $request->cate_id,
             'name' => $request->name,
             'slug' => $request->slug,
             'thumbnail' => $thumbnail,
@@ -108,5 +113,16 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function order_detail()
+    {
+        $orders = OrderPlaced::with('product','product_variants')->get();
+        return view('admin.orders', compact('orders'));
+    }
+    public function customer_info($order_id)
+    {
+        $order = OrderPlaced::where('id' , $order_id)->first();
+        return view('admin.customer_info', compact('order'));
     }
 }

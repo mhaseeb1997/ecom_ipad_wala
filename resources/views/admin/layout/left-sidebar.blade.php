@@ -26,6 +26,9 @@
                 </div>
             </div>
 
+            <a href="{{route('order_detail')}}" class="nav-item nav-link"><i
+                    class="fa fa-laptop me-2"></i>Orders</a>
+
         </div>
     </nav>
 </div>

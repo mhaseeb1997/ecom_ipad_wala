@@ -25,4 +25,8 @@ class OrderPlaced extends Model
     public function product_variants(){
         return $this->belongsTo(ProductVariants::class , 'pro_vid');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class , 'user_id');
+    }
 }

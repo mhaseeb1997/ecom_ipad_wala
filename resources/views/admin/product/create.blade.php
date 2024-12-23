@@ -6,6 +6,21 @@
         <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="name">Category</label>
+                        <select class="form-control form-select" name="cate_id">
+                            @foreach($category as $cat)
+                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
                 <div class="col-6 mb-3">
                     <div class="form-group">
                         <label for="name">Name</label>

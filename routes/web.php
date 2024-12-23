@@ -11,14 +11,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
     Route::group(['prefix' => 'admin/1122/'], function () {
-        Route::resource('product-category', ProductCategoryController::class);
-        Route::resource('product', ProductController::class);
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
         })->name('dashboard');
+        Route::resource('product-category', ProductCategoryController::class);
+        Route::resource('product', ProductController::class);
+        Route::get('order/detail', [ProductController::class, 'order_detail'])->name('order_detail');
+        Route::get('customer/{order_id}/detail/', [ProductController::class, 'customer_info'])->name('customer_info');
+
     });
 });
 require __DIR__ . '/auth.php';
