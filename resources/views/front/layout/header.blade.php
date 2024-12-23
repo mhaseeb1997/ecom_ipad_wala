@@ -80,6 +80,12 @@
                                 <a href="/" class="main-menu-wrapper__cart" style="color: #fff; text-decoration: none">
                                     {{ Auth::user()->name }}
                                 </a>
+                                <a href="#" class="nav-link" onclick="document.getElementById('logout-form').submit()">
+                                    <p>Logout</p>
+                                    <form action="<?php echo e(route('logout')); ?>" method="POST" id="logout-form">
+                                            <?php echo csrf_field(); ?>
+                                    </form>
+                                </a>
                             @else
                                 <a href="{{route('front-auth')}}" class="main-menu-wrapper__cart ">
                                     <i class="fa-regular fa-user fa-sm" style="color: #fcfcfc;"></i>

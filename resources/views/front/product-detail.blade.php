@@ -88,9 +88,9 @@
 
             <!-- Product Details -->
             <div class="col-md-6 product-detail-details">
-                <form id="product-detail-form" action="{{route('product_buy_now')}}" method="post">
-                    @csrf
+                <form id="product-detail-form" action="{{route('product_checkout')}}" method="get">
                     <input type="hidden" id="selected-condition" name="condition" value="">
+                    <input type="hidden" name="pro_id" value="{{$product->id}}">
                     <input type="hidden" id="selected-color" name="color" value="">
                     <input type="hidden" id="selected-storage" name="storage" value="">
                     <input type="hidden" id="selected-price" name="price" value="">
@@ -108,22 +108,13 @@
                     <!-- Color Options -->
                     <div class="mb-3 product-detail-color-options">
                         <span>Color: </span>
-                        <div class="btn-group" role="group">
-                            {{--                        <button type="button" class="btn btn-outline-primary js-purple">Deep Purple</button>--}}
-                            {{--                        <button type="button" class="btn btn-outline-primary js-gold">Gold</button>--}}
-                            {{--                        <button type="button" class="btn btn-outline-primary js-silver">Silver</button>--}}
-                            {{--                        <button type="button" class="btn btn-outline-primary js-black">Space Black</button>--}}
-                        </div>
+                        <div class="btn-group" role="group"></div>
                     </div>
 
                     <!-- Storage Options -->
                     <div class="mb-3 product-detail-storage-options">
                         <span>Size: </span>
-                        <div class="btn-group" role="group">
-                            {{--                        <button type="button" class="btn btn-outline-primary js-storage-128">128 GB</button>--}}
-                            {{--                        <button type="button" class="btn btn-outline-primary js-storage-256">256 GB</button>--}}
-                            {{--                        <button type="button" class="btn btn-outline-primary active js-storage-512">512 GB</button>--}}
-                        </div>
+                        <div class="btn-group" role="group"></div>
                     </div>
 
                     <!-- Shipping & Warranty Info -->
@@ -137,18 +128,10 @@
 
                     <div class="mb-3 product-detail-warranty-info">
                         <p><i class="bi bi-shield-check"></i> <a href="#" id="openwarranty">12 Months Warranty</a></p>
-                        <!-- <p><i class="bi bi-check-circle"></i> <a href="#" id="openmobcheck"  data-bs-toggle="modal" data-bs-target="#mobocheckModal">MoboCheck Guarantee</a></p> -->
-
                     </div>
-
-                    <!-- Add to Cart Button -->
-{{--                    <a href="">--}}
-                        <button class="btn btn-primary btn-block product-detail-add-to-cart">Buy Now</button>
-{{--                    </a>--}}
+                    <button class="btn btn-primary btn-block product-detail-add-to-cart">Buy Now</button>
                 </form>
             </div>
-
-
         </div>
     </div>
 
@@ -219,146 +202,12 @@
     </div>
 
 
-
-    <!-- all models  -->
-
-    <!-- Shipping Modal -->
-    <div id="popupshiping" class="modal">
-        <div class="modal-content">
-            <button type="button" class="closeshiping" aria-label="Close">&times;</button>
-
-            <div class="popup-header">
-                <h3>Shipping Information</h3>
-            </div>
-
-            <div class="modal-body">
-                Your product will be delivered within 3-5 business days. Please note that delivery times may vary based
-                on your
-                location.
-            </div>
-
-            <!-- Social Media Icons with Links -->
-            <div class="social-signin">
-                <div class="or-divider">OR</div>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank" class="social-icon facebook-icon"
-                       aria-label="Facebook">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank" class="social-icon instagram-icon"
-                       aria-label="Instagram">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="mailto:support@example.com" class="social-icon email-icon" aria-label="Email">
-                        <i class="bi bi-envelope"></i>
-                    </a>
-                    <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp-icon"
-                       aria-label="WhatsApp">
-                        <i class="bi bi-whatsapp"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Return Modal -->
-
-    <div id="popupreturn" class="modal">
-        <div class="modal-content">
-            <button type="button" class="closereturn" aria-label="Close">&times;</button>
-
-            <div class="popup-header">
-                <h3>Return Policy</h3>
-            </div>
-
-            <div class="modal-body">
-                You can return the product within 10 days of delivery. The product must be in its original condition.
-            </div>
-
-            <!-- Social Media Icons with Links -->
-            <div class="social-signin">
-                <div class="or-divider">OR</div>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank" class="social-icon facebook-icon"
-                       aria-label="Facebook">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank" class="social-icon instagram-icon"
-                       aria-label="Instagram">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="mailto:support@example.com" class="social-icon email-icon" aria-label="Email">
-                        <i class="bi bi-envelope"></i>
-                    </a>
-                    <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp-icon"
-                       aria-label="WhatsApp">
-                        <i class="bi bi-whatsapp"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Warranty Modal -->
-    <div id="popupWarranty" class="modal">
-        <div class="modal-content">
-            <button type="button" class="closeWarranty" aria-label="Close">&times;</button>
-
-            <div class="popup-header">
-                <h3>Warranty Policy</h3>
-            </div>
-
-            <div class="modal-body">
-                You can return the product within 10 days of delivery. The product must be in its original condition.
-            </div>
-
-            <!-- Social Media Icons with Links -->
-            <div class="social-signin">
-                <div class="or-divider">OR</div>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank" class="social-icon facebook-icon"
-                       aria-label="Facebook">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank" class="social-icon instagram-icon"
-                       aria-label="Instagram">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="mailto:support@example.com" class="social-icon email-icon" aria-label="Email">
-                        <i class="bi bi-envelope"></i>
-                    </a>
-                    <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp-icon"
-                       aria-label="WhatsApp">
-                        <i class="bi bi-whatsapp"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 
     <!-- whatsapp icon  -->
-    <div id="whatsapp-button" onmouseenter="openPopup()">
+    <div id="whatsapp-button" onmouseenter="startChat()">
         <img src="{{asset('front/images/WhatsApp.png')}}" alt="WhatsApp"/>
         <h6 class="abc">Contact Us</h6>
-    </div>
-
-    <!-- WhatsApp Chat Popup -->
-    <div id="whatsapp-popup" class="popup">
-        <div class="popup-header">
-            <img src="{{asset('front/images/Return.jpg')}}" style="width: 30px; border-radius: 50px;" alt="hello">
-            <h2>Ipad wale </h2>
-
-            <span onclick="closePopup()">×</span>
-        </div>
-        <div class="popup-body">
-            <p>Hi there!<br>How can we help you?</p>
-        </div>
-        <div class="popup-footer">
-            <!-- <input type="text" class="form-control" placeholder="Type a message"> -->
-            <button onclick="startChat()">Start Chat</button>
-        </div>
     </div>
 
 @endsection
@@ -373,7 +222,6 @@
             }
         }
 
-        // Function to start chat (redirect to WhatsApp)
         function startChat() {
             window.open("https://wa.me/923150891475", "_blank"); // Replace with your WhatsApp number
         }
@@ -416,7 +264,6 @@
                 thumbnail.classList.toggle("selected-thumbnail", i === index);
             });
         }
-
 
         $(document).ready(function () {
             const productVariants = @json($product->product_variants);
@@ -514,103 +361,5 @@
             // Initialize with default values
             updateColors(); // Load all colors
         });
-
-
-        // $(document).ready(function () {
-        //     const productData = {
-        //         top: {
-        //             colors: {
-        //                 silver: {name: "Silver", storage: {128: 2800, 256: 2900}},
-        //                 black: {name: "Space Black", storage: {512: 3150}},
-        //             },
-        //         },
-        //         good: {
-        //             colors: {
-        //                 purple: {name: "Deep Purple", storage: {512: 2700}},
-        //                 gold: {name: "Gold", storage: {128: 2400, 256: 2500}},
-        //             },
-        //         },
-        //     };
-        //
-        //     let selectedCondition = "top"; // Default condition
-        //     let selectedColor = "purple"; // Default color
-        //     let selectedStorage = 512; // Default storage
-        //
-        //     function updateColors() {
-        //         const colors = productData[selectedCondition].colors;
-        //         $(".product-detail-color-options .btn").each(function () {
-        //             const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
-        //             const colorKey = colorClass.replace("js-", "");
-        //             if (colors[colorKey]) {
-        //                 $(this).show();
-        //             } else {
-        //                 $(this).hide();
-        //             }
-        //         });
-        //
-        //         if (!colors[selectedColor]) {
-        //             selectedColor = Object.keys(colors)[0];
-        //             $(".product-detail-color-options .btn").removeClass("active");
-        //             $(`.product-detail-color-options .js-${selectedColor}`).addClass("active");
-        //         }
-        //     }
-        //
-        //     function updateStorage() {
-        //         const storageOptions = productData[selectedCondition].colors[selectedColor].storage;
-        //         $(".product-detail-storage-options .btn").each(function () {
-        //             const storage = parseInt($(this).text().trim());
-        //             if (storageOptions[storage] !== undefined) {
-        //                 $(this).show();
-        //             } else {
-        //                 $(this).hide();
-        //             }
-        //         });
-        //
-        //         if (!storageOptions[selectedStorage]) {
-        //             selectedStorage = Object.keys(storageOptions)[0];
-        //             $(".product-detail-storage-options .btn").removeClass("active");
-        //             $(`.product-detail-storage-options .btn:contains(${selectedStorage} GB)`).addClass("active");
-        //         }
-        //     }
-        //
-        //     function updatePrice() {
-        //         const price =
-        //             productData[selectedCondition].colors[selectedColor].storage[selectedStorage];
-        //         $(".js-product-price").text(`AED ${price}`);
-        //     }
-        //
-        //     $(".product-detail-condition .btn").click(function () {
-        //         $(".product-detail-condition .btn").removeClass("active");
-        //         $(this).addClass("active");
-        //         selectedCondition = $(this).hasClass("js-pre-loved-top") ? "top" : "good";
-        //         selectedColor = "purple"; // Reset to default color
-        //         selectedStorage = 512; // Reset to default storage
-        //         updateColors();
-        //         updateStorage();
-        //         updatePrice();
-        //     });
-        //
-        //     $(".product-detail-color-options .btn").click(function () {
-        //         $(".product-detail-color-options .btn").removeClass("active");
-        //         $(this).addClass("active");
-        //         const colorClass = $(this).attr("class").split(" ").find(c => c.startsWith("js-"));
-        //         selectedColor = colorClass.replace("js-", "");
-        //         selectedStorage = 512; // Reset to default storage
-        //         updateStorage();
-        //         updatePrice();
-        //     });
-        //
-        //     $(".product-detail-storage-options .btn").click(function () {
-        //         $(".product-detail-storage-options .btn").removeClass("active");
-        //         $(this).addClass("active");
-        //         selectedStorage = parseInt($(this).text().trim());
-        //         updatePrice();
-        //     });
-        //
-        //     updateColors();
-        //     updateStorage();
-        //     updatePrice();
-        // });
-
     </script>
 @endpush
