@@ -18,25 +18,22 @@
                                 <th scope="col">Storage</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">status</th>
-
                             </tr>
                             </thead>
                             <tbody>
-
-                            <tr>
-                                <td>{{$order->product->name}}</td>
-                                <td>{{$order->product_variants->color}}</td>
-                                <td>{{$order->product_variants->storage}}</td>
-                                <td>{{$order->product_variants->price}}</td>
-                                <td>
-                                    @if($order->status == 0)
-                                        Pendding
-                                    @else
-                                        Approved
-                                    @endif
-                                </td>
-                            </tr>
-
+                                <tr>
+                                    <td>{{$order->product->name}}</td>
+                                    <td>{{$order->product_variants->color}}</td>
+                                    <td>{{$order->product_variants->storage}}</td>
+                                    <td>{{$order->product_variants->price}}</td>
+                                    <td>
+                                        @if($order->status == 0)
+                                            Pendding
+                                        @else
+                                            Approved
+                                        @endif
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <h3 class="mt-5">Customer Info</h3>

@@ -27,5 +27,5 @@
 {{--    <script src="{{asset('front/vendors/particles/particles-config.js')}}"></script>--}}
 {{--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>--}}
 {{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>--}}
-{{--    <script src="{{asset('js/izeetak.js')}}"></script>--}}
+    <script src="{{asset('front/js/izeetak.js')}}"></script>
 @stack('front-js')
