@@ -69,12 +69,12 @@
 
 }
 .search-input {
-  line-height: normal;
+  
   width: 80%;
   flex: 1;
   border: none;
   outline: none;
-  padding: 5px 15px;
+  padding: 0px 15px;
   font-size: 16px;
   color: white;
   background-color: transparent;

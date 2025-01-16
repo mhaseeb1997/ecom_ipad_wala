@@ -1,38 +1,11 @@
-
-
-
 /* Mobile Layout: 320px. */
 @media only screen and (max-width: 767px) {
-
-    #searcher{
-        display: none; 
+    #searcher {
+        display: none;
         margin: 5px auto;
         width: 300px;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     #main-slider-pagination {
@@ -50,56 +23,14 @@
     .main-slider-two h2 {
         font-size: 85px;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
 
 /*--------------------------------------------------------------
 # Main Menu All Responsice Css
 /////////
 --------------------------------------------------------------*/
 
-@media only screen and (min-width: 1200px) and (max-width: 1500px) {
-
-    .main-menu-wrapper__logo {
-        margin-right: 100px;
-    }
-
-
-
-}
-
-
-
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .main-header__top-right-text {
-        display: none;
-    }
-
-    .main-menu-wrapper__logo {
-        margin-right: 50px;
-    }
 
     .main-menu .mobile-nav__toggler {
         margin-right: 0;
@@ -110,29 +41,11 @@
     .main-menu-two .mobile-nav__toggler:hover {
         color: var(--thm-black);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    
-
     .main-menu-wrapper__logo {
-        margin-right: 50px;
+        margin-top: 15px;
     }
 
     .main-menu-wrapper__call {
@@ -144,54 +57,46 @@
         padding: 33px 0;
         display: none;
     }
-    .sbtn{
-        
-        display: none;}
+
+    .sbtn {
+        display: none;
+    }
 
     .main-menu-two .mobile-nav__toggler:hover {
         color: var(--thm-black);
     }
+}
 
-
-
-
-
-
-
-
-
-
+@media (max-width: 767px) {
 
 }
 
 
+@media (min-width: 371px) and (max-width: 450px) {
+    .main-menu-wrapper__logo {
+        justify-content: center;
+        position: relative;
 
-
-@media (max-width: 767px) {
-    .main-header__top {
-        display: none;
+        margin-top: 16px;
+        padding-top: 8px;
+        margin-left: 80px;
     }
 
-    .main-menu-wrapper__right {
-        display: none;
-    }
 
     .main-menu-wrapper__left {
         float: none;
     }
 
-    .main-menu-wrapper__logo {
-        margin-right: 0;
-    }
 
-    .main-menu-wrapper__main-menu {
+    .sbtn {
+        margin-top: 30px;
+        margin-left: 20px;
         float: right;
     }
 
     .main-menu {
         padding: 0 30px;
     }
-
 
     .main-menu .mobile-nav__toggler {
         margin-right: 0;
@@ -203,25 +108,14 @@
         color: var(--thm-black);
     }
 
-    #searcher{
-        display: none; 
-        margin: 5px auto;
+    #searcher {
+        display: none;
+        margin: 0 auto;
         width: 300px;
     }
-
 
     .card {
         width: 350px;
         padding: 20px;
-       
-      }
-
-
-
-
-
-
-
-
-
+    }
 }

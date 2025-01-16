@@ -27,5 +27,32 @@
 {{--    <script src="{{asset('front/vendors/particles/particles-config.js')}}"></script>--}}
 {{--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>--}}
 {{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>--}}
-    <script src="{{asset('front/js/izeetak.js')}}"></script>
+<script src="{{asset('front/js/izeetak.js')}}"></script>
 @stack('front-js')
+<script>
+    function toggleSearch() {
+        const searchContainer = document.getElementById("searcher");
+        if (searchContainer.style.display === "none" || searchContainer.style.display === "") {
+            searchContainer.style.display = "block";
+        } else {
+            searchContainer.style.display = "none";
+        }
+    }
+
+    // Function to open the popup with fade-in effect
+    function openPopup() {
+        const popup = document.getElementById("whatsapp-popup");
+        popup.classList.add("show");
+    }
+
+    // Function to close the popup
+    function closePopup() {
+        const popup = document.getElementById("whatsapp-popup");
+        popup.classList.remove("show");
+    }
+
+    // Function to start chat (redirect to WhatsApp)
+    function startChat() {
+        window.open("https://wa.me/971545151570", "_blank"); // Replace with your WhatsApp number
+    }
+</script>
