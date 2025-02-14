@@ -17,13 +17,14 @@
 .main-menu-wrapper {
     position: relative;
     display: block;
+    height: 90px;
 }
 
 
 .main-menu-wrapper__logo {
     position: relative;
     float: left;
-    margin-top: 19px;
+    margin: 5px 0 0 0;
 }
 
 .main-menu-wrapper__main-menu {
@@ -131,6 +132,7 @@
     position: relative;
     transition: all 500ms ease;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .main-menu .main-menu__list > li > a::before,
@@ -394,9 +396,8 @@
     background: #347959;
     border-radius: 5px;
     width: 250px;
-
-    margin: 15px 0 5px 0;
-    /* Added padding for better alignment */
+    margin: 23px 0px 5px 10px;
+    height: 45px;
 }
 
 /* Styling the search input */
@@ -415,11 +416,7 @@
 
 .mobile-nav__content {
     width: 300px;
-    background: linear-gradient(
-            9deg,
-            rgba(12, 64, 40, 1) 0%,
-            rgba(25, 111, 72, 1) 100%
-    );
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 50%, rgba(20, 92, 59, 1) 50%);
     z-index: 10;
     position: relative;
     height: 100%;
@@ -537,9 +534,10 @@
 }
 
 @media (width < 600px) {
-    .main-menu{
+    .main-menu {
         padding: 0px 50px;
     }
+
     .flags {
         display: none !important;
     }
@@ -551,7 +549,8 @@
     #searcher {
         right: 25px;
     }
-  .main-menu-wrapper__search-box-cart-box{
-    padding: 17px 0;
-  }
+
+    .main-menu-wrapper__search-box-cart-box {
+        padding: 17px 0;
+    }
 }

@@ -4,8 +4,8 @@
         <div class="footer-top">
             <div class="footer-row">
                 <div class="footer-col">
-                    <a href="/">
-                        <img src="{{asset('front/images/ipadwrittenblack.png')}}" alt="logo" class="footer-logo"/>
+                    <a href="{{route('home')}}">
+                        <img src="{{asset('front/images/ipadwrittenblack.png')}}" alt="logo" class="footer-logo" />
                     </a>
                     <p class="footer-about-text">
                         Welcome to iPad Wala, where quality meets affordability for Apple lovers in Pakistan!
@@ -15,21 +15,21 @@
                 <div class="footer-col">
                     <h3 class="footer-title">Services</h3>
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/">Our Products</a></li>
-                        <li><a href="/">about Us</a></li>
-                        <li><a href="/">QnA </a></li>
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><a href="{{('front-product')}}">Our Products</a></li>
+                        <li><a href="{{route('front-about-us')}}">about Us</a></li>
+                        <li><a href="{{route('front-faq')}}">QnA </a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3 class="footer-title">Contact</h3>
                     <ul class="footer-contact-info">
                         <li>
-                            <img src="{{asset('front/images/mailvector.png')}}" alt="email"/>
+                            <img src="{{asset('front/images/mailvector.png')}}" alt="email" />
                             <a href="mailto:officialcodesbunny@gmail.com">&nbsp;abdulhaseeb@ipadwala.pk</a>
                         </li>
                         <li>
-                            <img src="{{asset('front/images/telephonevector.png')}}" alt="phone"/>
+                            <img src="{{asset('front/images/telephonevector.png')}}" alt="phone" />
                             <NavLink to="tel:923099506114">&nbsp;+92 309 9506114</NavLink>
                         </li>
                     </ul>
@@ -37,9 +37,6 @@
                 <div class="footer-col">
                     <h3 class="footer-title">Follow us</h3>
                     <div class="footer-social">
-                        <a href="mailto:abdulhaseeb@ipadwala.pk" target="_blank">
-                            <i class="fa fa-envelope"></i>
-                        </a>
                         <a href="https://www.instagram.com/ipadwala0?igsh=eTdsZTYwdGllM3U5&utm_source=qr"
                            target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.facebook.com/share/14cs2eDxPh/?mibextid=wwXIfr" target="_blank">
@@ -59,3 +56,4 @@
         </div>
     </div>
 </footer>
+

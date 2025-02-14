@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('pro_id')->nullable();
             $table->unsignedBigInteger('pro_vid')->nullable();
-            $table->unsignedBigInteger('bank_receipt')->nullable();
-            $table->unsignedBigInteger('add_on')->nullable();
-            $table->unsignedBigInteger('status')->nullable();
+            $table->string('bank_receipt')->nullable();
+            $table->string('add_on')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

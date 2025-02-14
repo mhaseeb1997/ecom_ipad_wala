@@ -14,7 +14,7 @@
     <div class="container my-5">
         <div class="row">
             @foreach($products as $item)
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12">
                     <a href="{{route('front-product-detail',$item->slug)}}"
                        style="text-decoration: none; color: black;">
                         <div class="product-card">
@@ -26,6 +26,10 @@
                                 <p class="product-condition">Condition: Pre-Loved | Top</p>
                                 <div class="price">
                                     <p class="current-price">AED 549.00</p>
+                                    <p class="discounted-price"><small>
+                                            <del>AED 600</del>
+                                            <span> 50% less vs
+                                                    new</span></small></p>
                                 </div>
                                 <div class="delivery-info">
                                     <p>🚚 Express Delivery, in 48 hours</p>

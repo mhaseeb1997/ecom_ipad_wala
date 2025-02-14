@@ -33,9 +33,9 @@ Route::get('about-us', function () {
     return view('front.about-us');
 })->name('front-about-us');
 
-Route::get('qna', function () {
+Route::get('faq', function () {
     return view('front.qna');
-})->name('front-qna');
+})->name('front-faq');
 
 Route::get('product', [FrontendController::class, 'product'])->name('front-product');
 Route::get('product/detail/{slug}', [FrontendController::class, 'product_detail'])->name('front-product-detail');

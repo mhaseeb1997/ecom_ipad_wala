@@ -40,19 +40,6 @@
             font-size: 20px;
         }
     </style>
-    <div class="social-icons">
-        <a href="mailto:officialcodesbunny@gmail.com" target="_blank" class="mail" style="color: black;"><img
-                src="{{asset('front/images/mail.png')}}" style="width: 30px;" alt=""/> <span>&nbsp;Mail</span></a>
-
-        <a href="https://linkedin.com" target="_blank" class="linkedin"><i class="fab fa-linkedin"> </i> <span>&nbsp;LinkedIn</span></a>
-        <a href="https://wa.me/923080044190?text=Hello%2C%20I%27m%20interested%20in%20your%20services" target="_blank"
-           class="whatsapp"><i class="fab fa-whatsapp"> </i> <span>&nbsp;Whatsapp</span></a>
-
-        <a href="https://www.facebook.com/profile.php?id=61565411637604&mibextid=ZbWKwL" target="_blank"
-           class="facebook"><i class="fab fa-facebook"> </i> <span>&nbsp;Facebook</span></a>
-        <a href="https://www.instagram.com/codes.bunny?igsh=MjU2aXl1eWRwa2Q2" target="_blank" class="instagram"><i
-                class="fab fa-instagram"> </i> <span>&nbsp;Instagram</span></a>
-    </div>
 
     <!-- main section start  -->
     <div class="container mt-5 product-detail-section">
@@ -95,7 +82,7 @@
                     <input type="hidden" id="selected-storage" name="storage" value="">
                     <input type="hidden" id="selected-price" name="price" value="">
                     <h1 class="product-detail-title">{{$product->name}}</h1>
-                    <p class="product-detail-price text-success js-product-price">AED 3,289.00</p>
+                    <p class="product-detail-price text-success js-product-price">pkr 3,289.00</p>
                     {{--                <p class="product-detail-stock-info text-danger">Limited stock: only 1 left - order now.</p>--}}
 
                     <!-- Condition Buttons -->
@@ -135,14 +122,12 @@
         </div>
     </div>
 
-
-
     <!-- IMFORMATION AND ADDONS -->
     <div class="container mt-4 product-section">
         <div class="row">
             <!-- Product Image and Details Card -->
             <div class="col-lg-7 col-md-12 mb-4">
-                <div class="card product-image-card shadow-lg"> <!-- Added shadow-lg for large shadow -->
+                <div class="card product-image-card shadow-lg" style="width: 100%; margin: 0"> <!-- Added shadow-lg for large shadow -->
                     <div class="card-body">
                         <h5 class="card-title">Product Overview</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Features and Specifications</h6>
@@ -174,7 +159,7 @@
                             </p>
                         </div>
                         <div class="addon-right " style="margin: 10px;">
-                            <span class="addon-price">AED 93.45</span>
+                            <span class="addon-price">pkr 93.45</span>
                         </div>
                     </div>
 
@@ -192,7 +177,7 @@
                             </p>
                         </div>
                         <div class="addon-right" style="margin: 10px;">
-                            <span class="addon-price">AED 29.40</span>
+                            <span class="addon-price">pkr 29.40</span>
 
                         </div>
                     </div>
@@ -200,33 +185,9 @@
             </div>
         </div>
     </div>
-
-
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
-
-    <!-- whatsapp icon  -->
-    <div id="whatsapp-button" onmouseenter="startChat()">
-        <img src="{{asset('front/images/WhatsApp.png')}}" alt="WhatsApp"/>
-        <h6 class="abc">Contact Us</h6>
-    </div>
-
 @endsection
 @push('front-js')
     <script>
-        function toggleSearch() {
-            const searchContainer = document.getElementById("searcher");
-            if (searchContainer.style.display === "none" || searchContainer.style.display === "") {
-                searchContainer.style.display = "block";
-            } else {
-                searchContainer.style.display = "none";
-            }
-        }
-
-        function startChat() {
-            window.open("https://wa.me/923150891475", "_blank"); // Replace with your WhatsApp number
-        }
-
-
         let currentSlide = 0;
         const carouselImage = document.getElementById("carouselImage");
         const thumbnails = document.querySelectorAll(".product-detail-thumbnail");
@@ -350,7 +311,7 @@
 
                 $('#selected-storage').val(storage); // Update hidden input for storage
                 $('#selected-price').val(price); // Update hidden input for price
-                $('.js-product-price').text(`AED ${price}`);
+                $('.js-product-price').text(`pkr ${price}`);
             });
 
             // Handle form submission

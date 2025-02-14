@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('is_admin')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('city');
-            $table->text('address');
+            $table->string('city')->nullable();
+            $table->text('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->string('google_id')->nullable();

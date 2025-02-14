@@ -34,7 +34,7 @@
 
     .main-menu .mobile-nav__toggler {
         margin-right: 0;
-        padding: 33px 0;
+        padding: 30px 0;
         display: none;
     }
 
@@ -74,12 +74,10 @@
 
 @media (min-width: 371px) and (max-width: 450px) {
     .main-menu-wrapper__logo {
-        justify-content: center;
         position: relative;
-
         margin-top: 16px;
         padding-top: 8px;
-        margin-left: 80px;
+        margin-left: 40px;
     }
 
 
@@ -100,7 +98,7 @@
 
     .main-menu .mobile-nav__toggler {
         margin-right: 0;
-        padding: 33px 0;
+        padding: 30px 0;
         display: inline-block;
     }
 

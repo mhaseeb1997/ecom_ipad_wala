@@ -85,8 +85,6 @@ class FrontendController extends Controller
             'email' => 'required|email',
             'mobile' => 'required',
             'password' => 'required',
-            'city' => 'required',
-            'address' => 'required',
         ]);
 
         $user = User::create([
