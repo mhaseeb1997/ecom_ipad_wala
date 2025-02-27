@@ -49,7 +49,15 @@
                 </div>
                 <div class="col-12 mb-3">
                     <div class="row clone-section">
-                        <div class="col-3 mb-2">
+                        <div class="col-2 mb-2">
+                            <label for="name">Quality</label>
+                            <select name="variant[quality][]" class="form-control form-select">
+                                <option value="top">Top</option>
+                                <option value="good">Good</option>
+                                <option value="average">Average</option>
+                            </select>
+                        </div>
+                        <div class="col-2 mb-2">
                             <label for="name">Color</label>
                             <select name="variant[color][]" class="form-control form-select">
                                 <option value="red">Red</option>
@@ -57,7 +65,7 @@
                                 <option value="blue">Blue</option>
                             </select>
                         </div>
-                        <div class="col-3 mb-2">
+                        <div class="col-2 mb-2">
                             <label for="name">Storage</label>
                             <select name="variant[storage][]" class="form-control form-select">
                                 <option value="512">512</option>
@@ -65,11 +73,15 @@
                                 <option value="32">32</option>
                             </select>
                         </div>
-                        <div class="col-3 mb-2 align-items-center">
+                        <div class="col-2 mb-2 align-items-center">
                             <label for="name">Price</label>
                             <input type="text" name="variant[price][]" class="form-control">
                         </div>
-                        <div class="col-3 mb-2 align-items-center">
+                        <div class="col-2 mb-2 align-items-center">
+                            <label for="name">Compared Price</label>
+                            <input type="text" name="variant[compare][]" class="form-control">
+                        </div>
+                        <div class="col-2 mb-2 align-items-center">
                             <label for="name">Count</label>
                             <div class="d-flex">
                             <input type="text" name="variant[stock_count][]" class="form-control">

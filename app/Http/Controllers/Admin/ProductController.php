@@ -37,10 +37,12 @@ class ProductController extends Controller
         $variants = [];
         foreach ($request->variant['color'] as $index => $color) {
             $variants[] = [
+                'quality' => $request->variant['quality'][$index],
                 'color' => $color,
                 'storage' => $request->variant['storage'][$index],
                 'stock_count' => $request->variant['stock_count'][$index],
                 'price' => $request->variant['price'][$index],
+                'compare' => $request->variant['compare'][$index],
             ];
         }
 
@@ -73,9 +75,11 @@ class ProductController extends Controller
         foreach ($variants as $variant) {
             ProductVariants::create([
                 'pro_id' => $category->id,
+                'quality' => $variant['quality'],
                 'color' => $variant['color'],
                 'storage' => $variant['storage'],
                 'price' => $variant['price'],
+                'compare' => $variant['compare'],
                 'stock_count' => $variant['stock_count'],
             ]);
         }

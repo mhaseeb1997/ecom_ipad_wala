@@ -1,5 +1,3 @@
-
-
 <!-- First Navbar (Logo, Search, Icons) -->
 <header class="main-header ">
     <nav class="main-menu">
@@ -29,12 +27,14 @@
                 </div>
                 <div class="col-lg-4 col-4">
                     <div id="searcher" style="position: absolute">
-                        <div class="search-container">
-                            <input type="text" class="search-input" placeholder="Search Pre-Loved Products">
-                            <button class="search-button">
-                                Go
-                            </button>
-                        </div>
+                        <form action="{{route('front-product')}}" method="get">
+                            <div class="search-container">
+                                <input type="text" class="search-input" name="search" placeholder="Search Pre-Loved Products" required>
+                                <button type="submit" class="search-button">
+                                    Go
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="main-menu-wrapper__right">
                         <div class="main-menu-wrapper__search-box-cart-box">
@@ -45,7 +45,8 @@
                                 <i class="fa-regular fa-user fa-sm" style="color: #fcfcfc;"></i>
                             </a>
                             <div class="flags d-flex align-items-center">
-                                <img src="{{asset('front/images/UAEflag.png')}}" alt="UAE Flag" width="30" height="20" class="me-2">
+                                <img src="{{asset('front/images/UAEflag.png')}}" alt="UAE Flag" width="30" height="20"
+                                     class="me-2">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
                                      style="margin-right: 20px;" alt="Pakistan Flag" width="30" height="20">
                             </div>

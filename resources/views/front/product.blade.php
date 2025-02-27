@@ -14,7 +14,7 @@
     <div class="container my-5">
         <div class="row">
             @foreach($products as $item)
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-5">
                     <a href="{{route('front-product-detail',$item->slug)}}"
                        style="text-decoration: none; color: black;">
                         <div class="product-card">
@@ -32,7 +32,7 @@
                                                     new</span></small></p>
                                 </div>
                                 <div class="delivery-info">
-                                    <p>🚚 Express Delivery, in 48 hours</p>
+                                    <p>🚚 Express Delivery, in 72 hours</p>
                                 </div>
                             </div>
                         </div>

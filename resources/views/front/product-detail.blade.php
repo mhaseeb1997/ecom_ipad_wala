@@ -39,6 +39,11 @@
             cursor: pointer;
             font-size: 20px;
         }
+
+        .active, .product-detail-add-to-cart {
+            background: #155f3d !important;
+            border: none;
+        }
     </style>
 
     <!-- main section start  -->
@@ -78,18 +83,17 @@
                 <form id="product-detail-form" action="{{route('product_checkout')}}" method="get">
                     <input type="hidden" id="selected-condition" name="condition" value="">
                     <input type="hidden" name="pro_id" value="{{$product->id}}">
+                    <input type="hidden" id="selected-quality" name="quality">
                     <input type="hidden" id="selected-color" name="color" value="">
                     <input type="hidden" id="selected-storage" name="storage" value="">
                     <input type="hidden" id="selected-price" name="price" value="">
                     <h1 class="product-detail-title">{{$product->name}}</h1>
-                    <p class="product-detail-price text-success js-product-price">pkr 3,289.00</p>
-                    {{--                <p class="product-detail-stock-info text-danger">Limited stock: only 1 left - order now.</p>--}}
-
-                    <!-- Condition Buttons -->
+                    <p class="product-detail-price text-success js-product-price">-</p>
                     <div class="btn-group d-flex product-detail-condition mb-3" role="group">
-                        <button type="button" class="btn btn-outline-secondary active js-pre-loved-top">Pre-Loved | Top
-                        </button>
-                        {{--                    <button type="button" class="btn btn-outline-secondary js-pre-loved-good">Pre-Loved | Good</button>--}}
+                        @foreach($product->product_variants->pluck('quality')->unique() as $quality)
+                            <button type="button" class="btn btn-outline-primary js-quality"
+                                    data-quality="{{ $quality }}">{{ ucfirst($quality) }}</button>
+                        @endforeach
                     </div>
 
                     <!-- Color Options -->
@@ -123,29 +127,21 @@
     </div>
 
     <!-- IMFORMATION AND ADDONS -->
-    <div class="container mt-4 product-section">
+    <div class="container my-4">
         <div class="row">
             <!-- Product Image and Details Card -->
-            <div class="col-lg-7 col-md-12 mb-4">
-                <div class="card product-image-card shadow-lg" style="width: 100%; margin: 0"> <!-- Added shadow-lg for large shadow -->
+            <div class="col-lg-8 col-md-12 mb-4 p-0">
+                <div class="card product-image-card shadow-lg" style="width: 100%; margin: 0">
+                    <!-- Added shadow-lg for large shadow -->
                     <div class="card-body">
                         <h5 class="card-title">Product Overview</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Features and Specifications</h6>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor nisi
-                            ut orci
-                            fermentum, id commodo libero condimentum.</p>
-                        <p class="card-text">Aliquam convallis, ligula vel viverra sodales, elit massa cursus ex, nec
-                            consectetur
-                            justo mauris eu nulla.</p>
-                        <p class="card-text">Curabitur vel erat vitae sapien dapibus ullamcorper ac non erat.</p>
-                        <p class="card-text">Integer vitae elit a odio placerat volutpat non sit amet magna.</p>
-                        <p class="card-text">Nulla facilisi. Sed ultricies vel velit nec hendrerit.</p>
+                        {{$product->description}}
                     </div>
                 </div>
             </div>
 
             <!-- Product Details with Addon Options -->
-            <div class="col-lg-5 col-md-12">
+            <div class="col-lg-4 col-md-12 p-0">
                 <div class="card product-info-card shadow-lg">
                     <h2 class="addon-title">Add Ons</h2>
 
@@ -229,76 +225,77 @@
         $(document).ready(function () {
             const productVariants = @json($product->product_variants);
 
-            function updateColors(condition = null) {
-                const colors = [...new Set(
-                    productVariants
-                        .filter(variant => !condition || variant.condition === condition)
-                        .map(variant => variant.color)
-                )];
+            function updateColors(quality) {
 
-                const colorContainer = $('.product-detail-color-options .btn-group');
+                const colors = new Set();
+
+                productVariants
+                    .filter(variant => variant.quality === quality)
+                    .forEach(variant => {
+                        colors.add(variant.color);
+                    });
+
+                const colorContainer = $('.product-detail-color-options');
                 colorContainer.empty();
 
-                if (colors.length > 0) {
+                if (colors.size > 0) {
+                    colorContainer.append('<h5>Colors</h5><div class="btn-group color-group"></div>');
+
                     colors.forEach(color => {
-                        colorContainer.append(
+                        $('.color-group').append(
                             `<button type="button" class="btn btn-outline-primary js-color" data-color="${color}">${color}</button>`
                         );
                     });
 
-                    // Automatically select the first color
-                    const defaultColor = $('.js-color').first();
-                    if (defaultColor.length) {
-                        defaultColor.addClass('active').trigger('click');
-                    }
+                    // Auto-select first color
+                    $('.js-color').first().addClass('active').trigger('click');
                 } else {
                     colorContainer.append('<p>No colors available</p>');
-                    $('.product-detail-storage-options .btn-group').empty().append('<p>No storage available</p>');
-                    $('.js-product-price').text('Price not available');
                 }
             }
 
-            function updateStorageAndPrice(color) {
-                const storages = productVariants.filter(variant => variant.color === color);
-
-                const storageContainer = $('.product-detail-storage-options .btn-group');
+            function updateStorageAndPrice(color, quality) {
+                console.log(color)
+                const storages = productVariants.filter(variant => variant.color === color && variant.quality === quality);
+                // console.log(quality);
+                const storageContainer = $('.product-detail-storage-options');
                 storageContainer.empty();
 
                 if (storages.length > 0) {
+                    storageContainer.append('<h5>Storage</h5><div class="btn-group storage-group"></div>');
+
                     storages.forEach(storage => {
-                        storageContainer.append(
+                        $('.storage-group').append(
                             `<button type="button" class="btn btn-outline-primary js-storage" data-price="${storage.price}" data-storage="${storage.storage}">${storage.storage} GB</button>`
                         );
                     });
 
-                    // Automatically select the first storage
-                    const defaultStorage = $('.js-storage').first();
-                    if (defaultStorage.length) {
-                        defaultStorage.addClass('active').trigger('click');
-                    }
+                    $('.js-storage').first().addClass('active').trigger('click');
                 } else {
                     storageContainer.append('<p>No storage available</p>');
-                    $('.js-product-price').text('Price not available');
                 }
             }
 
-            // Handle condition button clicks
-            $('.js-pre-loved-top, .js-pre-loved-good').on('click', function () {
-                const condition = $(this).hasClass('js-pre-loved-top') ? 'top' : 'good';
-                $('#selected-condition').val(condition); // Update hidden input for condition
+            // Handle quality selection
+            $('.js-quality').on('click', function () {
+                $('.js-quality').removeClass('active');
+                $(this).addClass('active');
+                const quality = $(this).data('quality');
+                $('#selected-quality').val(quality);
 
-                // Update colors and automatically trigger first color selection
-                updateColors(condition);
+                updateColors(quality);
             });
 
             // Handle color selection
-            $(document).on('click', '.js-color', function () {
-                $('.js-color').removeClass('active');
-                $(this).addClass('active');
+            $(document).on("click", ".js-color", function () {
+                $(".js-color").removeClass("active");
+                $(this).addClass("active");
 
-                const color = $(this).data('color');
-                $('#selected-color').val(color); // Update hidden input for color
-                updateStorageAndPrice(color);
+                const color = $(this).data("color");
+                const quality = $("#selected-quality").val(); // Quality ko fetch karein
+                console.log(quality);
+                $("#selected-color").val(color); // Update hidden input for color
+                updateStorageAndPrice(color, quality); // Pass quality here
             });
 
             // Handle storage selection
@@ -309,18 +306,13 @@
                 const storage = $(this).data('storage');
                 const price = $(this).data('price');
 
-                $('#selected-storage').val(storage); // Update hidden input for storage
-                $('#selected-price').val(price); // Update hidden input for price
-                $('.js-product-price').text(`pkr ${price}`);
+                $('#selected-storage').val(storage);
+                $('#selected-price').val(price);
+                $('.js-product-price').text(`PKR ${price}`);
             });
 
-            // Handle form submission
-            $('.product-detail-add-to-cart').on('click', function () {
-                $('#product-detail-form').submit(); // Submit the form
-            });
-
-            // Initialize with default values
-            updateColors(); // Load all colors
+            // Auto-select first quality by default
+            $('.js-quality').first().addClass('active').trigger('click');
         });
     </script>
 @endpush

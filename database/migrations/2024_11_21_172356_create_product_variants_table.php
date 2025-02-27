@@ -13,9 +13,11 @@ return new class extends Migration {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pro_id')->nullable();
+            $table->string('quality')->nullable();
             $table->string('color')->nullable();
             $table->string('storage')->nullable();
             $table->string('price')->nullable();
+            $table->string('compare')->nullable();
             $table->string('stock_count')->nullable();
 
             $table->foreign('pro_id')->references('id')->on('products')->onDelete('cascade');

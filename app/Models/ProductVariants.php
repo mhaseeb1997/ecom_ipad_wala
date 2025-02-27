@@ -10,9 +10,11 @@ class ProductVariants extends Model
     use HasFactory;
     protected $fillable = [
         'pro_id',
+        'quality',
         'color',
         'storage',
         'price',
+        'compare',
         'stock_count',
     ];
 }

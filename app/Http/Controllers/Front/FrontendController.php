@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Hash;
 
 class FrontendController extends Controller
 {
-    public function product()
+    public function product(Request $request)
     {
-        $products = Products::latest()->get();
+        $key = $request->search;
+        if ($key) {
+            $products = Products::where('name', 'LIKE', "%$key%")->latest()->get();
+        } else {
+            $products = Products::latest()->get();
+        }
         return view('front.product', compact('products'));
     }
 
@@ -68,7 +73,7 @@ class FrontendController extends Controller
     public function dashboard(Request $request)
     {
         $user_id = Auth::id();
-        $orders = OrderPlaced::with('product','product_variants')->where('user_id', $user_id)->get();
+        $orders = OrderPlaced::with('product', 'product_variants')->where('user_id', $user_id)->get();
         return view('front.dashboard', compact('orders'));
     }
 

@@ -18,6 +18,10 @@
             z-index: 9999;
         }
 
+        .loader img {
+            width: 85px;
+        }
+
         /* Hide carousel initially */
         .home-hero-carousel {
             display: none;
