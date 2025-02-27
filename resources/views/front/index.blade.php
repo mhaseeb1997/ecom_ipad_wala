@@ -74,116 +74,44 @@
         </div>
     </div>
 
-
-    <div class="container">
-        <div class="home-demo">
-            <h3 style="justify-content: center; text-align: center; margin: 30px 0;">Our Products</h3>
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-5">
-                        <a href="productdetail.html" style="text-decoration: none; color: white;">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="{{asset('front/images/ipadonee.jpg')}}" alt="Product Image">
-                                </div>
-                                <div class="product-info">
-                                    <p class="product-name">Apple iPad 7th Gen</p>
-                                    <p class="product-condition">Condition: Pre-Loved | Top</p>
-                                    <div class="price">
-                                        <p class="current-price">AED 549.00</p>
-                                        <p class="discounted-price"><small>
-                                                <del>AED 600</del>
-                                                <span> 50% less vs
+    @if(count($products) > 0)
+        <div class="container">
+            <div class="home-demo">
+                <h3 style="justify-content: center; text-align: center; margin: 30px 0;">Our Products</h3>
+                <div class="container">
+                    <div class="row">
+                        @foreach($products as $product)
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-5">
+                                <a href="{{route('front-product-detail',$product->slug)}}"
+                                   style="text-decoration: none; color: white;">
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="{{asset('front/product/'.$product->thumbnail)}}" alt="Product Image">
+                                        </div>
+                                        <div class="product-info">
+                                            <p class="product-name">{{$product->name}}</p>
+                                            <p class="product-condition">Condition: Pre-Loved | Top</p>
+                                            <div class="price">
+                                                <p class="current-price">AED 549.00</p>
+                                                <p class="discounted-price"><small>
+                                                        <del>AED 600</del>
+                                                        <span> 50% less vs
                                                     new</span></small></p>
+                                            </div>
+                                            <div class="delivery-info">
+                                                <p>🚚 Express Delivery, in 72 hours</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="delivery-info">
-                                        <p>🚚 Express Delivery, in 72 hours</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </a>
+                        @endforeach
                     </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-6 mb-5">
-                        <a href="productdetail.html" style="text-decoration: none; color: white;">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="{{asset('front/images/ipadonee.jpg')}}" alt="Product Image">
-                                </div>
-                                <div class="product-info">
-                                    <p class="product-name">Apple iPad 7th Gen</p>
-                                    <p class="product-condition">Condition: Pre-Loved | Top</p>
-                                    <div class="price">
-                                        <p class="current-price">AED 549.00</p>
-                                        <p class="discounted-price"><small>
-                                                <del>AED 600</del>
-                                                <span> 50% less vs
-                                                    new</span></small></p>
-                                    </div>
-                                    <div class="delivery-info">
-                                        <p>🚚 Express Delivery, in 72 hours</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-6 mb-5">
-                        <a href="productdetail.html" style="text-decoration: none; color: white;">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="{{asset('front/images/ipadonee.jpg')}}" alt="Product Image">
-                                </div>
-                                <div class="product-info">
-                                    <p class="product-name">Apple iPad 7th Gen</p>
-                                    <p class="product-condition">Condition: Pre-Loved | Top</p>
-                                    <div class="price">
-                                        <p class="current-price">AED 549.00</p>
-                                        <p class="discounted-price"><small>
-                                                <del>AED 600</del>
-                                                <span> 50% less vs
-                                                    new</span></small></p>
-                                    </div>
-                                    <div class="delivery-info">
-                                        <p>🚚 Express Delivery, in 72 hours</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-6 mb-5">
-                        <a href="productdetail.html" style="text-decoration: none; color: white;">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="{{asset('front/images/ipadonee.jpg')}}" alt="Product Image">
-                                </div>
-                                <div class="product-info">
-                                    <p class="product-name">Apple iPad 7th Gen</p>
-                                    <p class="product-condition">Condition: Pre-Loved | Top</p>
-                                    <div class="price">
-                                        <p class="current-price">AED 549.00</p>
-                                        <p class="discounted-price"><small>
-                                                <del>AED 600</del>
-                                                <span> 50% less vs
-                                                    new</span></small></p>
-                                    </div>
-                                    <div class="delivery-info">
-                                        <p>🚚 Express Delivery, in 72 hours</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Repeat similar product-card divs for more products -->
                 </div>
+
             </div>
-
         </div>
-    </div>
-
+    @endif
     <!-- reviews  -->
 
     <div class="container">

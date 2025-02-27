@@ -69,6 +69,8 @@ class ProductCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = ProductCategory::findOrFail($id);
+        $post->delete();
+        return redirect()->back()->with('success', 'Post deleted successfully');
     }
 }

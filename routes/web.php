@@ -24,11 +24,6 @@ Route::middleware('auth')->group(function () {
 });
 require __DIR__ . '/auth.php';
 
-
-Route::get('/', function () {
-    return view('front.index');
-})->name('home');
-
 Route::get('about-us', function () {
     return view('front.about-us');
 })->name('front-about-us');
@@ -37,6 +32,7 @@ Route::get('faq', function () {
     return view('front.qna');
 })->name('front-faq');
 
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('product', [FrontendController::class, 'product'])->name('front-product');
 Route::get('product/detail/{slug}', [FrontendController::class, 'product_detail'])->name('front-product-detail');
 Route::get('checkout', [FrontendController::class, 'checkout'])->name('product_checkout');

@@ -18,8 +18,12 @@
                         <th>{{$key + 1}}</th>
                         <th>{{$data->name}}</th>
                         <th>
-                            <button class="btn btn-sm btn-primary">edit</button>
-                            <button class="btn btn-sm btn-danger">delete</button>
+                            <form action="{{ route('product-category.destroy', $data->id) }}" method="POST"
+                                  onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </th>
                     </tr>
                 @endforeach

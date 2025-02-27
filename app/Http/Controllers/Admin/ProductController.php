@@ -16,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        return view('admin.product.index');
+        $products = Products::all();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProductController extends Controller
     public function create()
     {
         $category = ProductCategory::get();
-        return view('admin.product.create' ,compact('category'));
+        return view('admin.product.create', compact('category'));
     }
 
     /**
@@ -84,7 +84,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Product variants saved successfully!');
+        return redirect()->route('product.index')->with('success', 'Success, New category has been added successfully!');
     }
 
     /**
@@ -116,17 +116,20 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Products::findOrFail($id);
+        $post->delete();
+        return redirect()->back()->with('success', 'Post deleted successfully');
     }
 
     public function order_detail()
     {
-        $orders = OrderPlaced::with('product','product_variants')->get();
+        $orders = OrderPlaced::with('product', 'product_variants')->get();
         return view('admin.orders', compact('orders'));
     }
+
     public function customer_info($order_id)
     {
-        $order = OrderPlaced::where('id' , $order_id)->first();
+        $order = OrderPlaced::where('id', $order_id)->first();
         return view('admin.customer_info', compact('order'));
     }
 }

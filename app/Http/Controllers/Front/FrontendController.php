@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Hash;
 
 class FrontendController extends Controller
 {
+    public function index()
+    {
+
+        $products = Products::take(4)->get();
+        return view('front.index', compact('products'));
+    }
+
     public function product(Request $request)
     {
         $key = $request->search;

@@ -42,7 +42,19 @@
 
         .active, .product-detail-add-to-cart {
             background: #155f3d !important;
+            color: #FFFFFF !important;
             border: none;
+        }
+
+        .product-detail-condition button, .storage-group button {
+            border: 1px solid #000000;
+            color: #0a0a0a;
+        }
+
+        .product-detail-condition button:hover, .storage-group button:hover {
+            background: #25d366;
+            color: #0a0a0a;
+            border: 1px solid #000000;
         }
     </style>
 

@@ -38,8 +38,8 @@
                     <div class="form-group">
                         <label for="name">Slug</label>
                         <input type="text" name="slug" class="form-control @error('name') is-invalid @enderror"
-                               id="name"
-                               placeholder="Slug" value="{{ old('name') }}">
+                               id="slug"
+                               placeholder="Slug" value="{{ old('name') }}" readonly>
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                 <div class="col-12 mb-3">
                     <div class="row clone-section">
                         <div class="col-2 mb-2">
-                            <label for="name">Quality</label>
+                            <label for="variant">Quality</label>
                             <select name="variant[quality][]" class="form-control form-select">
                                 <option value="top">Top</option>
                                 <option value="good">Good</option>
@@ -58,11 +58,15 @@
                             </select>
                         </div>
                         <div class="col-2 mb-2">
-                            <label for="name">Color</label>
+                            <label for="color">Color</label>
                             <select name="variant[color][]" class="form-control form-select">
-                                <option value="red">Red</option>
-                                <option value="green">Green</option>
-                                <option value="blue">Blue</option>
+                                <option value="Red">Red</option>
+                                <option value="Green">Green</option>
+                                <option value="Blue">Blue</option>
+                                <option value="White Silver">White Silver</option>
+                                <option value="Space Grey">Space Grey</option>
+                                <option value="Gold">Gold</option>
+                                <option value="Rose Gold">Rose Gold</option>
                             </select>
                         </div>
                         <div class="col-2 mb-2">
@@ -115,7 +119,16 @@
 @endsection
 @push('scripts')
     <script>
-        $(document).ready(function () {
+        $(document).ready(function(){
+            $("#name").on("keyup", function(){
+                let name = $(this).val();
+                let slug = name.toLowerCase()
+                    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+                    .replace(/\s+/g, '-') // Replace spaces with hyphens
+                    .replace(/-+/g, '-'); // Remove duplicate hyphens
+
+                $("#slug").val(slug);
+            });
             const addMoreButton = $('.add-more');
             const cloneSection = $('.clone-section').first();
 
